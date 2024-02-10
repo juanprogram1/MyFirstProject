@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="img/1.ico" type="image/x-icon"> 
+  <div id="head">
+
+  </div>
+  <body>
+    <div id="header"></div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="nav"></div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 style="margin:auto" class="h2">Proveedor</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+           
+          </div>
+          <div aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page"></li>
+  </ol>
+</div>
+
+
+
+
+          </button>
+        </div>
+      </div>
+<!--inicio de contenido-->
+      <br>  
+<button id="visualizar" class="btn btn-primary" onclick="mostrar('ver');">Ingresar Nuevo Proveedor</button>
+    <br>
+<div id="form" style="display: none;"> 
+
+<div class="row"> 
+    <div class="col-lg-4">
+      <input type="hidden" id="pid" >
+      <input type="text" class="form-control" id="nombre" placeholder="Nombre proveedor">
+      <span style="color: red; display: none;" id="errora">ingresa nombre del proveedor</span>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" id="apellido" placeholder="Apellido proveedor">
+        <span style="color: red; display: none;" id="errorb">ingresa apellido del proveedor</span>
+    </div>
+    <div class="col-lg-4">
+      <input type="email" class="form-control" id="email" placeholder="Correo electronico">
+      <span style="color: red; display: none;" id="errorc">ingresa correo electronico proveedor</span>
+    </div>
+</div>
+<div class="row"> 
+    <div class="col-lg-4">
+        <input type="number" class="form-control" id="telefono" placeholder="Telefono">
+        <span style="color: red; display: none;" id="errord">ingresa el telefono del proveedor</span>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" id="empresa" placeholder="Empresa">
+        <span style="color: red; display: none;" id="errore">ingrese la empresa del proveedor</span>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+<div class="row"> 
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <button id="botong" class="btn btn-primary" onclick="guardar();">Guardar</button>
+        <button id="botone" class="btn btn-primary" onclick="validar();" style="display: none;">Editar</button>
+    </div>
+    <div class="col-lg-4">
+        <button id="ocultar" class="btn btn-secondary" onclick="mostrar('ocultar');">cancelar</button>
+    </div>
+</div>
+</div>
+<br>
+<div class="consulta" 
+id="consulta">
+  <div class="table-responsive">
+  <table class="table table-sm">      
+  <tr>
+   <th>Nombre</th>
+   <th>Apellido</th>
+   <th>Email</th>
+   <th>Telefono</th>
+   <th>Empresa</th>
+  <th>Otras</th>
+
+ </tr>
+ <button style="float:right" type="button" class="btn btn-success"  id="btnpdf" onclick="btnpdf">Exportar </button>
+  <tbody id="proveedor">
+  </tbody>
+  </table>
+  </div>
+  </div>
+      
+   <!--fin de contenido-->   
+    </main>
+  </div>
+</div>
+
+
+
+        
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script src="js/menu/html2canvas.js"></script>
+ <script src="js/menu/jspdf.debug.js"></script>
+<script src="js/menu/main.js"></script>
+
+
+<script src="js/menu/conexion.js"></script>
+<script src="js/partes/head.js"></script>
+<script src="js/partes/header.js"></script>
+<script src="js/partes/nav.js"></script>
+<script src="js/menu/proveedor.js"></script>
+
+    
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+</html>

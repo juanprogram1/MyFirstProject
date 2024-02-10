@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="img/1.ico" type="image/x-icon">
+   <div id="head"></div>
+     <link rel="stylesheet" href="css/dashboard.css">
+
+  <body>
+   
+    <div id="header"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="nav"></div>
+    
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 style="margin:auto"  class="h2">Compra Del Producto</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+           <div class="btn-group me-2"> </div>
+            <div aria-label="breadcrumb">
+            
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page"></li>
+  </ol>
+</div>       
+          </button>
+        </div>
+      </div>
+
+<p><a href="https://github.com/simonbengtsson/jsPDF-AutoTable">
+      </a> </p>
+      
+<!--export pdf,excell
+
+<div  class="export"> 
+  <div class="dt-buttons btn-group">    
+  <button class="btn btn-secondary buttons-pdf buttons-html5 btn-danger" tabindex="0" aria-controls="example" type="button" title="Exportar a PDF">
+  <span><i class="fas fa-file-pdf"></i></span></button> 
+  
+    <button class="btn btn-secondary buttons-excel buttons-html5 btn-success" tabindex="0" aria-controls="example" type="button" title="Exportar a Excel">
+     <span><i class="fas fa-file-excel"></i> </span></button>
+  
+       <button class="btn btn-secondary buttons-print btn-info" tabindex="0" aria-controls="example" type="button" title="Imprimir">
+        <span><i class="fa fa-print"></i> </span></button>
+ </div></div>
+--> 
+
+
+<!--inicio contenido-->
+<br>
+<button id="visualizar" class="btn btn-primary" onclick="mostrar('ver');">Insertar Nueva Compra</button>
+
+<br>
+
+<div id="form" style="display: none;"> 
+
+
+
+<div class="row"> 
+    <div class="col-lg-4">
+      <input type="hidden" id="pid" >
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre producto">
+        <span style="color: red; display: none;" id="errora">Ingresa Nombre Del Producto</span>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" id="marca" placeholder="Marca Producto">
+        <span style="color: red; display: none;" id="errorb">ingrese marca del producto</span>
+    </div>
+    <div class="col-lg-4">
+        <input type="number" class="form-control" id="precio" placeholder="Precio Producto">
+        <span style="color: red; display: none;" id="errorc">ingrese el precio del producto</span>
+    </div>
+</div>
+<div class="row"> 
+    <div class="col-lg-4">
+        <input type="number" class="form-control" id="stock" placeholder="Stock">
+        <span style="color: red; display: none;" id="errord">ingresa los stock</span>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" id="codigo" placeholder="Codigo">
+        <span style="color: red; display: none;" id="errore">ingresa nombre del codigo</span>
+    </div>
+    <div class="col-lg-2">
+        <input type="date" class="form-control" id="fecha" placeholder="Fecha">
+        <span style="color: red; display: none;" id="errorf">ingresa la fecha</span>
+    </div>
+
+</div> 
+<div class="row"> 
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      
+        <button id="botong" class="btn btn-primary" onclick="selcompra();">Guardar</button>
+        <button id="botone" class="btn btn-primary" onclick="validar();" style="display: none;" >Editar</button>
+    </div>
+    <div class="col-lg-4">
+        <button id="ocultar" class="btn btn-secondary" onclick="mostrar('ocultar');">cancelar</button>
+    </div>
+</div>
+</div>
+
+
+<br>    
+<div class="consulta" 
+    id="consulta">
+<div class="table-responsive">
+<table id="table" class="table table-sm">    
+        <thead>
+      <tr>
+  <th>Nombre</th>
+    <th>Marca</th>
+      <th>Precio</th>
+        <th>Stock</th>
+          <th>Codigo</th>
+            <th>Fecha</th>
+              <th>Subtotal</th>
+      </tr>
+        </thead>
+      
+      
+          <button style="float:right" type="button" class="btn btn-success"  id="btnpdf" onclick="btnpdf">Exportar </button>
+          
+<tbody id="concompra">
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<!--fin contenido-->
+    </main>
+  </div>
+</div>
+
+
+
+        
+  </body>
+  <!--firebase-->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="js/menu/html2canvas.js"></script>
+<script src="js/menu/jspdf.debug.js"></script>
+
+
+<!--<script src="jquery/jquery-3.3.1.min.js"></script>
+     <script src="popper/popper.min.js"></script>
+     <script src="bootstrap/js/bootstrap.min.js"></script>
+       
+      datatables JS 
+     <script type="text/javascript" src="datatables/datatables.min.js"></script>    
+      
+      para usar botones en datatables JS   
+     <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>  
+     <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>    
+     <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
+     <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+     <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script> -->
+      
+         <script type="text/javascript" src="js/menu/main.js"></script>
+            
+    <script src="js/menu/conexion.js"></script>
+      <script src="js/partes/head.js"></script>
+       <script src="js/partes/header.js"></script>
+         <script src="js/partes/nav.js"></script>
+            <script src="js/menu/compra.js"></script>
+
+            <!--<script src="js/bootstrap/bootstrap.bundle.min.js"></script>-->
+</html>
